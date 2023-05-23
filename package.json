@@ -1,6 +1,6 @@
 {
   "name": "@futura-dev/eslint-config-react",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Eslint shared configuration for react projects",
   "main": "index.js",
   "private": false,
