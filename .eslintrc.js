@@ -1,19 +1,25 @@
+/* eslint-disable no-undef */
+
 module.exports = {
-    parser: '@typescript-eslint/parser',
-    extends: [
-        'eslint:recommended',
-        'plugin:import/errors',
-        'plugin:react/recommended',
-        'plugin:jsx-a11y/recommended',
-        'plugin:@typescript-eslint/recommended',
-    ],
-    plugins: [
-        'react-hooks',
-        '@typescript-eslint'
-    ],
-    rules: {
-        "react/react-in-jsx-scope": "off",
-        "react/jsx-uses-react": "off",
-        "react-hooks/exhaustive-deps": "warn"
-    },
+  parser: "@typescript-eslint/parser",
+  extends: [
+    "@futura-dev/typescript/.eslintrc.js",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
+  plugins: ["react-hooks", "@typescript-eslint", "import"],
+  rules: {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-uses-react": "off",
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "import/no-duplicates": "warn",
+    "react/jsx-no-bind": "warn",
+    "import/default": "warn",
+    "import/first": "warn",
+    "import/no-unresolved": "error",
+    "import/export": "error"
+  }
 };
