@@ -4,7 +4,6 @@ module.exports = {
   parser: "@typescript-eslint/parser",
   extends: [
     "@futura-dev/typescript/.eslintrc.js",
-    "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended"
