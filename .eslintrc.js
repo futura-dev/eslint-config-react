@@ -20,5 +20,10 @@ module.exports = {
     "import/default": "warn",
     "import/first": "warn",
     "import/export": "error"
-  }
+  },
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
 };
