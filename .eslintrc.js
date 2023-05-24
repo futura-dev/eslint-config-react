@@ -19,7 +19,6 @@ module.exports = {
     "react/jsx-no-bind": "warn",
     "import/default": "warn",
     "import/first": "warn",
-    "import/no-unresolved": "error",
     "import/export": "error"
   }
 };
