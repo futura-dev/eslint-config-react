@@ -1,11 +1,19 @@
 import * as fs from "fs";
-import { ParamsOf } from "../../src/utils/types";
 import { spawnSync } from "child_process";
 import * as rl from "readline";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type ParamsOf<T extends (...params: readonly any[]) => any> = T extends (
+  ...params: infer P
+) => // eslint-disable-next-line @typescript-eslint/no-explicit-any
+any
+  ? P
+  : never;
+
 const question = (q: string): Promise<string> => {
-  return new Promise<string>((resolve, reject) => {
-    readline.question(q, (res) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  return new Promise<string>((resolve, _) => {
+    readline.question(q, res => {
       resolve(res);
     });
   });
@@ -14,7 +22,7 @@ const question = (q: string): Promise<string> => {
 // read interface
 const readline = rl.createInterface({
   input: process.stdin,
-  output: process.stdout,
+  output: process.stdout
 });
 
 const normalizePath = (path: string): string => {
@@ -36,7 +44,7 @@ export const controlledSpawn = (...params: ParamsOf<typeof spawnSync>) => {
 const run = async () => {
   const GIT_ROOT = controlledSpawn("git", [
     "rev-parse",
-    "--show-toplevel",
+    "--show-toplevel"
   ]).trim();
 
   console.log("reading", `${GIT_ROOT}/.cosmokeeper.json`);
@@ -61,7 +69,7 @@ const run = async () => {
   const STAGED_FILES = controlledSpawn("git", [
     "diff",
     "--cached",
-    "--name-only",
+    "--name-only"
   ]).split(/(\s|\n|\r|\r\n)/);
 
   // MONOREPO
@@ -91,7 +99,7 @@ const run = async () => {
     const current_branch = controlledSpawn("git", [
       "symbolic-ref",
       "--short",
-      "HEAD",
+      "HEAD"
     ]).trim();
     const branch_name_contains_a_slug = slugs.reduce((acc, slug) => {
       return (
@@ -102,7 +110,7 @@ const run = async () => {
     }, false);
     if (!branch_name_contains_a_slug) {
       console.error(
-        `branch name \'${current_branch}\' does not respect the pattern '[slug]@${config.patterns.branch}|main|master'`
+        `branch name \\'${current_branch}\\' does not respect the pattern '[slug]@${config.patterns.branch}|main|master'`
       );
       process.exit(1);
     }
@@ -117,7 +125,7 @@ const run = async () => {
     for (const file of STAGED_FILES) {
       // take the package
       const pkg =
-        packages.find((pkg) =>
+        packages.find(pkg =>
           new RegExp(`${normalizePath(pkg)}`).test(normalizePath(file))
         ) ?? "root";
       visited_packages.add(pkg);
@@ -126,9 +134,7 @@ const run = async () => {
     if (visited_packages.size > 1) {
       // ask
       console.log("Warning: Modified files found in multiple packages.");
-      const input = await question(
-        "Do you want to allow this commit? (y/N):"
-      );
+      const input = await question("Do you want to allow this commit? (y/N):");
       if (input.toLowerCase() !== "y") {
         console.error("execution stopped");
         process.exit(1);
@@ -139,11 +145,11 @@ const run = async () => {
     const current_branch = controlledSpawn("git", [
       "symbolic-ref",
       "--short",
-      "HEAD",
+      "HEAD"
     ]);
     if (new RegExp(`${config.patterns.branch}`).test(current_branch)) {
       console.error(
-        `branch name \'${current_branch}\' does not respect the pattern '${config.patterns.branch}'`
+        `branch name \\'${current_branch}\\' does not respect the pattern '${config.patterns.branch}'`
       );
       process.exit(1);
     }
@@ -151,7 +157,7 @@ const run = async () => {
 
   // COMMON
   // ( lint, prettier )
-  const TO_LINT = STAGED_FILES.filter((file) =>
+  const TO_LINT = STAGED_FILES.filter(file =>
     new RegExp(`${config.lint.matches}`).test(file)
   );
 
@@ -161,6 +167,8 @@ const run = async () => {
   if (config.lint.prettier && TO_LINT.length > 0)
     controlledSpawn("npx", ["prettier", ...TO_LINT, "--write"]);
 
+  // add linted & beautified files
+  controlledSpawn("git", ["add", ...TO_LINT]);
   process.exit(0);
 };
 run();
