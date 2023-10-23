@@ -33,6 +33,6 @@
     "@futura-dev/contributing-gen": "^2.0.14",
     "@futura-dev/cosmodrome": "^1.2.0",
     "@futura-dev/cosmokeeper": "^0.1.7",
-    "commitlint": "^17.6.3"
+    "commitlint": "^18.0.0"
   }
 }
