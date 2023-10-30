@@ -29,7 +29,7 @@
     "eslint-plugin-react-hooks": "^4.6.0"
   },
   "devDependencies": {
-    "@commitlint/config-conventional": "^17.6.3",
+    "@commitlint/config-conventional": "^18.1.0",
     "@futura-dev/contributing-gen": "^2.0.14",
     "@futura-dev/cosmodrome": "^1.2.0",
     "@futura-dev/cosmokeeper": "^0.1.7",
