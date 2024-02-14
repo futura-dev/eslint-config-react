@@ -1,5 +1,4 @@
-/* eslint-disable no-undef */
-import { eslintrc } from "@futura-dev/eslint-config-typescript";
+const { eslintrc } = require("@futura-dev/eslint-config-typescript");
 
 module.exports = {
   // parser

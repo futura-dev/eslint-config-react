@@ -31,7 +31,7 @@
   "devDependencies": {
     "@commitlint/config-conventional": "^17.6.3",
     "@futura-dev/contributing-gen": "^2.1.0",
-    "@futura-dev/cosmodrome": "^1.4.1",
+    "@futura-dev/cosmodrome": "1.4.1",
     "@futura-dev/cosmokeeper": "^0.1.8",
     "commitlint": "^17.6.3",
     "npm-check-updates": "^16.14.15"
