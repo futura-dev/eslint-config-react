@@ -19,7 +19,7 @@
     "url": "https://github.com/futura-dev/eslint-config-react"
   },
   "peerDependencies": {
-    "@futura-dev/eslint-config-typescript": "^2.0.0-alpha.12",
+    "@futura-dev/eslint-config-typescript": "^2.0.0-alpha.14",
     "eslint": "^9.13.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
