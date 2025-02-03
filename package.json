@@ -31,13 +31,10 @@
     "@futura-dev/contributing-gen": "^2.1.0",
     "@futura-dev/cosmodrome": "^1.5.0-alpha.4",
     "@futura-dev/cosmokeeper": "^0.3.3",
+    "@futura-dev/eslint-config-typescript": "^2.0.0-alpha.15",
     "commitlint": "^19.6.1",
     "eslint-plugin-prettier": "^5.2.3",
     "npm-check-updates": "^17.1.14",
     "typescript-eslint": "^8.21.0"
-  },
-  "engines": {
-    "node": "v20",
-    "npm": "10"
   }
 }
